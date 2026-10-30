@@ -1,0 +1,31 @@
+name: First DevOps CI
+
+# Запуск при отправке изменений в main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Первое задание
+  basic-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check environment
+        run: |
+          echo "CI pipeline started"
+          pwd
+          ls -la
+          uname -a
+
+      - name: Check Docker
+        run: |
+          docker --version
+          docker compose version
+
+      - name: Finish
+        run: echo "CI pipeline completed successfully"
