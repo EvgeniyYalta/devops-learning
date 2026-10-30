@@ -27,5 +27,13 @@ jobs:
           docker --version
           docker compose version
 
+      - name: Validate Docker Compose
+        run: |
+          # Проверяем конфигурацию проекта Дня 24
+          docker compose -f docker/day24-final-project/compose.yaml config --quiet
+
+          # Сообщение выводится только при успешной проверке
+          echo "Docker Compose configuration is valid"
+
       - name: Finish
         run: echo "CI pipeline completed successfully"
