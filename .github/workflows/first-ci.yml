@@ -35,10 +35,10 @@ jobs:
           # Сообщение выводится только при успешной проверке
           echo "Docker Compose configuration is valid"
 
-      - name: Simulate CI failure
+      - name: Verify CI recovery
         run: |
-          echo "Testing CI error handling"
-          exit 1
+          echo "Testing CI recovery"
+          exit 0
 
       - name: Finish
         run: echo "CI pipeline completed successfully"
