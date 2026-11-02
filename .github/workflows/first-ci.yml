@@ -50,3 +50,14 @@ jobs:
 
       - name: Finish
         run: echo "CI pipeline completed successfully"
+
+
+  validation:
+    needs: basic-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate dependency
+        run: |
+          echo "Basic checks completed successfully"
+          echo "Validation job started"
