@@ -38,7 +38,7 @@ jobs:
       - name: Verify CI recovery
         run: |
           echo "Testing CI recovery"
-          exit 0
+          exit 1
 
       - name: Report success
         if: success()
