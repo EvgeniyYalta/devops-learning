@@ -40,5 +40,13 @@ jobs:
           echo "Testing CI recovery"
           exit 0
 
+      - name: Report success
+        if: success()
+        run: echo "All CI checks passed"
+
+      - name: Report failure
+        if: failure()
+        run: echo "CI pipeline failed"
+
       - name: Finish
         run: echo "CI pipeline completed successfully"
