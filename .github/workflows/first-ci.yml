@@ -35,6 +35,27 @@ jobs:
           # Сообщение выводится только при успешной проверке
           echo "Docker Compose configuration is valid"
 
+      - name: Test Bash file checker
+        run: |
+          # Проверяем синтаксис скрипта
+          bash -n ci/scripts/file_check.sh
+
+          # Создаём тестовый файл
+          touch test-existing.txt
+
+          # Проверяем успешный сценарий
+          output=$(bash ci/scripts/file_check.sh test-existing.txt)
+          echo "$output"
+          echo "$output" | grep -q "OK: file exists"
+
+          # Проверяем сценарий отсутствующего файла
+          output=$(bash ci/scripts/file_check.sh test-missing.txt)
+          echo "$output"
+          echo "$output" | grep -q "ERROR: file not found"
+
+          # Удаляем тестовый файл
+          rm test-existing.txt
+
       - name: Verify CI recovery
         run: |
           echo "Testing CI recovery"
