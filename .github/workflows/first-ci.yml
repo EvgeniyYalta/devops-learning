@@ -56,6 +56,18 @@ jobs:
           # Удаляем тестовый файл
           rm test-existing.txt
 
+      - name: Generate CI report
+        run: |
+          # Создаём отчёт о проверке Bash
+          bash ci/scripts/generate_report.sh
+
+      - name: Upload CI report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bash-test-report
+          path: ci/reports/test-report.txt
+          if-no-files-found: error
+
       - name: Verify CI recovery
         run: |
           echo "Testing CI recovery"
