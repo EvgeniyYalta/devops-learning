@@ -1,5 +1,10 @@
 name: First DevOps CI
 
+env:
+  APP_NAME: devops-learning
+  APP_ENV: testing
+  CI_VERSION: "1.0"
+
 # Запуск при отправке изменений в main
 on:
   push:
@@ -21,6 +26,9 @@ jobs:
           pwd
           ls -la
           uname -a
+          echo "Application: $APP_NAME"
+          echo "Environment: $APP_ENV"
+          echo "CI version: $CI_VERSION"
 
       - name: Check Docker
         run: |
