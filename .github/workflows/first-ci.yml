@@ -97,8 +97,12 @@ jobs:
     needs: basic-check
     runs-on: ubuntu-latest
 
+    env:
+      VALIDATION_MODE: strict
+
     steps:
       - name: Validate dependency
         run: |
           echo "Basic checks completed successfully"
           echo "Validation job started"
+          echo "Validation mode: $VALIDATION_MODE"
