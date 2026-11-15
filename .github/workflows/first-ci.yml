@@ -12,6 +12,15 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      target_environment:
+        description: "Select target environment"
+        required: true
+        default: "testing"
+        type: choice
+        options:
+          - testing
+          - staging
 
 jobs:
   # Первое задание
@@ -23,6 +32,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check environment
+        env:
+          TARGET_ENV: ${{ inputs.target_environment || 'testing' }}
         run: |
           echo "CI pipeline started"
           pwd
@@ -32,6 +43,7 @@ jobs:
           echo "Environment: $APP_ENV"
           echo "CI version: $CI_VERSION"
           echo "Deploy environment: $DEPLOY_ENV"
+          echo "Selected target environment: $TARGET_ENV"
 
       - name: Verify repository secret
         env:
