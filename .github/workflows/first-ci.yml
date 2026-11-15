@@ -27,9 +27,17 @@ jobs:
   basic-check:
     runs-on: ubuntu-latest
 
+    outputs:
+      check_result: ${{ steps.export_result.outputs.status }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Export check result
+        id: export_result
+        run: |
+          echo "status=passed" >> "$GITHUB_OUTPUT"
 
       - name: Check environment
         env:
@@ -136,6 +144,7 @@ jobs:
 
     env:
       VALIDATION_MODE: strict
+      BASIC_CHECK_RESULT: ${{ needs.basic-check.outputs.check_result }}
 
     steps:
       - name: Validate dependency
@@ -143,3 +152,5 @@ jobs:
           echo "Basic checks completed successfully"
           echo "Validation job started"
           echo "Validation mode: $VALIDATION_MODE"
+          echo "Basic check result: $BASIC_CHECK_RESULT"
+          test "$BASIC_CHECK_RESULT" = "passed"
