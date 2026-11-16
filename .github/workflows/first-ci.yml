@@ -186,6 +186,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         environment: [testing, staging]
         python-version: ['3.11', '3.12']
