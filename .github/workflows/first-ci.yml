@@ -181,3 +181,16 @@ jobs:
         run: |
           echo "Validation result: $VALIDATION_RESULT"
           test "$VALIDATION_RESULT" = "passed"
+
+  matrix-check:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        environment: [testing, staging]
+
+    steps:
+      - name: Check matrix environment
+        run: |
+          # Выводим текущее значение из матрицы
+          echo "Matrix environment: ${{ matrix.environment }}"
