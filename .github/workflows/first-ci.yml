@@ -122,9 +122,10 @@ jobs:
           if-no-files-found: error
 
       - name: Verify CI recovery
+        continue-on-error: true
         run: |
           echo "Testing CI recovery"
-          exit 0
+          exit 1
 
       - name: Report success
         if: success()
