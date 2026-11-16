@@ -189,6 +189,9 @@ jobs:
       matrix:
         environment: [testing, staging]
         python-version: ['3.11', '3.12']
+        exclude:
+          - environment: staging
+            python-version: '3.11'
 
     steps:
       - name: Set up Python
