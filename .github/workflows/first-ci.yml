@@ -205,3 +205,7 @@ jobs:
           echo "Matrix environment: ${{ matrix.environment }}"
           echo "Python version: ${{ matrix.python-version }}"
           python --version
+          if [ "${{ matrix.environment }}" = "testing" ] && [ "${{ matrix.python-version }}" = "3.11" ]; then
+            echo "Intentional failure for testing Python 3.11"
+            exit 1
+          fi
