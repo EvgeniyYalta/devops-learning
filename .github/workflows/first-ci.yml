@@ -188,9 +188,16 @@ jobs:
     strategy:
       matrix:
         environment: [testing, staging]
+        python-version: ['3.11', '3.12']
 
     steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
       - name: Check matrix environment
         run: |
-          # Выводим текущее значение из матрицы
           echo "Matrix environment: ${{ matrix.environment }}"
+          echo "Python version: ${{ matrix.python-version }}"
+          python --version
