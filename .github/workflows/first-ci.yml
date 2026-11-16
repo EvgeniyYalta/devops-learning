@@ -142,6 +142,9 @@ jobs:
     needs: basic-check
     runs-on: ubuntu-latest
 
+    outputs:
+      validation_result: ${{ steps.validate_result.outputs.status }}
+
     env:
       VALIDATION_MODE: strict
       BASIC_CHECK_RESULT: ${{ needs.basic-check.outputs.check_result }}
@@ -155,13 +158,26 @@ jobs:
           echo "Basic check result: $BASIC_CHECK_RESULT"
           test "$BASIC_CHECK_RESULT" = "passed"
 
+      - name: Export validation result
+        id: validate_result
+        run: |
+          echo "status=passed" >> "$GITHUB_OUTPUT"
+
   staging-check:
     needs: validation
     if: ${{ inputs.target_environment == 'staging' }}
     runs-on: ubuntu-latest
+
+    env:
+      VALIDATION_RESULT: ${{ needs.validation.outputs.validation_result }}
 
     steps:
       - name: Check staging job
         run: |
           echo "Running STAGING job"
           echo "Validation completed successfully"
+
+      - name: Verify validation result
+        run: |
+          echo "Validation result: $VALIDATION_RESULT"
+          test "$VALIDATION_RESULT" = "passed"
