@@ -135,7 +135,8 @@ jobs:
         run: echo "CI pipeline failed"
 
       - name: Finish
-        run: echo "CI pipeline completed successfully"
+        if: ${{ always() }}
+        run: echo "CI pipeline finished"
 
 
   validation:
