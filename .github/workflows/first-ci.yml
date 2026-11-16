@@ -154,3 +154,14 @@ jobs:
           echo "Validation mode: $VALIDATION_MODE"
           echo "Basic check result: $BASIC_CHECK_RESULT"
           test "$BASIC_CHECK_RESULT" = "passed"
+
+  staging-check:
+    needs: validation
+    if: ${{ inputs.target_environment == 'staging' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check staging job
+        run: |
+          echo "Running STAGING job"
+          echo "Validation completed successfully"
