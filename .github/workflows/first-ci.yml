@@ -194,6 +194,7 @@ jobs:
 
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         environment: [testing, staging]
         python-version: ['3.11', '3.12']
