@@ -129,7 +129,8 @@ jobs:
       - name: Verify CI recovery
         continue-on-error: true
         run: |
-          echo "Testing CI recovery"
+          echo "Testing CI concurrency"
+          sleep 90
           exit 0
 
       - name: Report success
