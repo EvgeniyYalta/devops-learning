@@ -26,6 +26,7 @@ jobs:
   # Первое задание
   basic-check:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     outputs:
       check_result: ${{ steps.export_result.outputs.status }}
