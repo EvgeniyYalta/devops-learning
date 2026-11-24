@@ -2,6 +2,7 @@ name: First DevOps CI
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   APP_NAME: devops-learning
