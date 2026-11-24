@@ -26,7 +26,7 @@ jobs:
   # Первое задание
   basic-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 1
 
     outputs:
       check_result: ${{ steps.export_result.outputs.status }}
@@ -125,7 +125,8 @@ jobs:
       - name: Verify CI recovery
         continue-on-error: true
         run: |
-          echo "Testing CI recovery"
+          echo "Testing CI timeout"
+          sleep 90
           exit 0
 
       - name: Report success
