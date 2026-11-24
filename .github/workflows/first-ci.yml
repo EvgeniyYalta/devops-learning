@@ -1,5 +1,8 @@
 name: First DevOps CI
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 env:
   APP_NAME: devops-learning
   APP_ENV: testing
