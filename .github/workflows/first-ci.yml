@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Export check result
         id: export_result
@@ -123,7 +123,7 @@ jobs:
           bash ci/scripts/generate_report.sh
 
       - name: Upload CI report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: bash-test-report
           path: ci/reports/test-report.txt
@@ -208,7 +208,7 @@ jobs:
 
     steps:
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
