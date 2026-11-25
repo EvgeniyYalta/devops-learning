@@ -194,6 +194,7 @@ jobs:
 
   matrix-check:
     runs-on: ubuntu-latest
+    permissions: {}
 
     strategy:
       fail-fast: false
